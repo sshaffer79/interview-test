@@ -29,15 +29,15 @@
             <div class="name">{{item.name}}</div>
         </div>
     </div>
-    <div flex="none" class="order" layout="column">
-        <div flex="none" class="order-id">Order ID Goes Here</div>
+    <div flex="none" class="order" layout="column" ng-controller="orderEntryScreen">
+        <div flex="none" class="order-id">{{order.orderId}}</div>
         <div class="order-content" layout="column">
             <div flex="grow">
               <table class="line-items">
-                <tr>
-                    <td class="qty">3</td>
-                    <td class="name">Really Tasty Pizzas</td>
-                    <td class="price">42.00</td>
+                <tr ng-repeat="orderItem in order.lineItems">
+                    <td class="qty">{{orderItem.numberOfItems}}</td>
+                    <td class="name">{{orderItem.name}}</td>
+                    <td class="price">{{orderItem.totalPrice}}</td>
                 </tr>
               </table>
             </div>
@@ -45,27 +45,35 @@
               <table flex="none" class="summary">
                 <tr>
                     <th colspan="2">Subtotal:</th>
-                    <td class="price">???</td>
+                    <td class="price">{{order.subTotal}}</td>
                 </tr>
                 <tr>
                     <th colspan="2">Sales Tax:</th>
-                    <td class="price">???</td>
+                    <td class="price">{{order.salesTax}}</td>
                 </tr>
                 <tr>
                     <th colspan="2">Grand Total:</th>
-                    <td class="price">???</td>
+                    <td class="price">{{order.total}}</td>
                 </tr>
               </table>
             </div>
         </div>
         <div class="order-actions" layout="row">
             <button flex="none"
-                    class="void-button">
+                    class="void-button"
+                    ng-click="void()">
                 Void
             </button>
             <div flex="grow"></div>
             <button flex="none"
-                    class="pay-now-button">
+                    class="void-button"
+                    ng-click="clear()">
+                Clear
+            </button>
+            <div flex="grow"></div>
+            <button flex="none"
+                    class="pay-now-button"
+                    ng-click="paynow()">
                 Pay Now
             </button>
         </div>
