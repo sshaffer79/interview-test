@@ -34,10 +34,10 @@
         <div class="order-content" layout="column">
             <div flex="grow">
               <table class="line-items">
-                <tr ng-repeat="orderItem in order.lineItems">
-                    <td class="qty">{{orderItem.numberOfItems}}</td>
+                <tr ng-repeat="orderItem in order.items">
+                    <td class="qty">{{orderItem.quantity}}</td>
                     <td class="name">{{orderItem.name}}</td>
-                    <td class="price">{{orderItem.totalPrice}}</td>
+                    <td class="price">{{orderItem.cost}}</td>
                 </tr>
               </table>
             </div>

@@ -36,6 +36,10 @@ public class OrderLineItem {
         return totalPrice;
     }
 
+    public String getTotalPriceDisplay() {
+        return totalPrice.toPlainString();
+    }
+
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }

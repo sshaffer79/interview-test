@@ -8,9 +8,10 @@ fakePosModule.controller('orderEntryScreen', function($scope, $http) {
     })
 
     $scope.$on('itemSelected', function(event, message) {
-        console.log(event);
-        console.log(message);
         $scope.$broadcast('addToOrder', message);
+        $http.put('/api/order/item/'+message.name).then(function(response) {
+            $scope.order = response.data;
+        });
     });
 
     $scope.void = function() {
