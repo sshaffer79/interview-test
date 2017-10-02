@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="fake-pos" lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Incredibly Fake Point-of-Sale</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-messages.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+    <script src="app.js"></script>
+
+    <link rel="stylesheet" href="app.css"/>
+
+</style>
+
+</head>
+<body ng-controller="orderEntryScreen">
+  <div layout="row">
+    <div flex="grow" class="available-items" ng-controller="availableItems">
+        <div class="item" ng-repeat="item in availableItems" ng-click="itemSelected(item)" >
+            <div class="name">{{item.name}}</div>
+        </div>
+    </div>
+    <div flex="none" class="order" layout="column">
+        <div flex="none" class="order-id">Order ID Goes Here</div>
+        <div class="order-content" layout="column">
+            <div flex="grow">
+              <table class="line-items">
+                <tr>
+                    <td class="qty">3</td>
+                    <td class="name">Really Tasty Pizzas</td>
+                    <td class="price">42.00</td>
+                </tr>
+              </table>
+            </div>
+            <div flex="none">
+              <table flex="none" class="summary">
+                <tr>
+                    <th colspan="2">Subtotal:</th>
+                    <td class="price">???</td>
+                </tr>
+                <tr>
+                    <th colspan="2">Sales Tax:</th>
+                    <td class="price">???</td>
+                </tr>
+                <tr>
+                    <th colspan="2">Grand Total:</th>
+                    <td class="price">???</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+        <div class="order-actions" layout="row">
+            <button flex="none"
+                    class="void-button">
+                Void
+            </button>
+            <div flex="grow"></div>
+            <button flex="none"
+                    class="pay-now-button">
+                Pay Now
+            </button>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
