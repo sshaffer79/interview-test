@@ -15,19 +15,28 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    public Order getOrder(@CookieValue("JSESSIONID") String orderId) {
+        return orderService.getOrder(orderId);
+    }
+
     @RequestMapping(value = "/item/{itemName}", method = {RequestMethod.POST, RequestMethod.PUT})
+    @ResponseBody
     public Order addItemToOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable String itemName) {
         return orderService.addOrUpdateLineItem(orderId, itemName);
     }
 
     @RequestMapping(value = "/item/{itemName}", method = RequestMethod.DELETE)
+    @ResponseBody
     public Order removeItemFromOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable String itemName) {
         return orderService.removeLineItem(orderId, itemName);
     }
 
     @RequestMapping(value = "/clear", method = RequestMethod.DELETE)
-    public void clearOrder(@CookieValue("JSESSIONID") String orderId) {
+    @ResponseBody
+    public Order clearOrder(@CookieValue("JSESSIONID") String orderId) {
         logger.info(orderId);
-        orderService.clear(orderId);
+        return orderService.clear(orderId);
     }
 }
