@@ -39,8 +39,4 @@ public class OrdersDAO {
         }
         return order;
     }
-
-    public Order removeItem(String orderId, String itemId) {
-        return null;
-    }
 }

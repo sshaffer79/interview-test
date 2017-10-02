@@ -20,6 +20,10 @@ public class OrderService {
         this.ordersDAO = ordersDAO;
     }
 
+    public Order getOrder(String orderId) {
+        return ordersDAO.getOrder(orderId);
+    }
+
     public Order addOrUpdateLineItem(String orderId, String itemName) {
         Order order = ordersDAO.getOrder(orderId);
         Item item = items.itemFor(itemName);
