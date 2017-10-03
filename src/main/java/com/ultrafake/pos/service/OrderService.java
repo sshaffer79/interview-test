@@ -21,8 +21,9 @@ public class OrderService {
 
     private static BigDecimal SALES_TAX = new BigDecimal(0.06);
 
-    public OrderService(OrdersDAO ordersDAO) {
+    public OrderService(OrdersDAO ordersDAO, Items items) {
         this.ordersDAO = ordersDAO;
+        this.items = items;
     }
 
     public Order getOrder(String orderId) {
