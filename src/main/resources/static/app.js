@@ -15,6 +15,7 @@ fakePosModule.controller('orderEntryScreen', function($scope, $http) {
         $http.put('/api/order/item/'+message.id).then(function(response) {
             console.dir(response.data);
             $scope.order = response.data;
+            location.reload();
         });
     });
 
