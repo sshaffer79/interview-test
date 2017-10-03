@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The configuration to create a cache for storing orders
+ */
 @Configuration
 public class OrderConfig {
     @Bean

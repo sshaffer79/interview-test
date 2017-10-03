@@ -54,6 +54,12 @@ public class OrderController {
         return createFrom(orderService.clear(orderId));
     }
 
+    /**
+     * Converts a Order object to a OrderDTO object. It will convert BigDecimal values into String for proper
+     * decimal formatting
+     * @param order The order
+     * @return The OrderDTO representing that transformed contents of the order
+     */
     protected OrderDTO createFrom(Order order) {
         List<ItemDTO> items = new ArrayList<>();
         for (OrderLineItem lineItem : order.getLineItems()) {

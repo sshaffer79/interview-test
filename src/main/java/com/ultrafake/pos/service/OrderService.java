@@ -26,10 +26,22 @@ public class OrderService {
         this.items = items;
     }
 
+    /**
+     * Get the Order by id
+     * @param orderId The order id
+     * @return The order
+     */
     public Order getOrder(String orderId) {
         return ordersDAO.getOrder(orderId);
     }
 
+    /**
+     * Adds or updates a line item for a given order. If a line item is already found for this order, that item has
+     * its number of items incremented and its total price updated.
+     * @param orderId The order id
+     * @param itemId The id of the item
+     * @return The update order
+     */
     public Order addOrUpdateLineItem(String orderId, int itemId) {
         Order order = ordersDAO.getOrder(orderId);
         Item item = items.itemFor(itemId);
@@ -54,6 +66,12 @@ public class OrderService {
         return order;
     }
 
+    /**
+     * Remove a line item value from an order if found
+     * @param orderId The id of the order
+     * @param itemId The item id of the line item to be removed from the order
+     * @return The updated order
+     */
     public Order removeLineItem(String orderId, int itemId) {
         Order order = ordersDAO.getOrder(orderId);
 
@@ -66,11 +84,21 @@ public class OrderService {
         return order;
     }
 
+    /**
+     * Clears out an order
+     * @param orderId The order id to be cleared
+     * @return A new empty order
+     */
     public Order clear(String orderId) {
         ordersDAO.clear(orderId);
         return new Order(orderId);
     }
 
+    /**
+     * Takes a provided order and calculates the sub total, tax, and total values for the order based off its
+     * order line items.
+     * @param order The order that needs totals calculated
+     */
     public void calculateTaxAndTotals(Order order) {
         BigDecimal subTotal = new BigDecimal(0.00).setScale(2, RoundingMode.CEILING);
         for (OrderLineItem lineItem : order.getLineItems()) {

@@ -16,6 +16,11 @@ public class OrdersDAO {
         this.orderCache = orderCache;
     }
 
+    /**
+     * Retrieves the order from the repository. If none is found, a new one is created and put in the repository.
+     * @param orderId The id of the order to be retrieved
+     * @return The order contents
+     */
     public Order getOrder(String orderId) {
         Order order;
         if (orderCache.containsKey(orderId)) {
@@ -27,10 +32,19 @@ public class OrdersDAO {
         return order;
     }
 
+    /**
+     * Remove the order from the repository
+     * @param orderId The id of the order to be removed
+     */
     public void clear(String orderId) {
         orderCache.remove(orderId);
     }
 
+    /**
+     * Update the repositories value with the latest order contents
+     * @param order The order object to update
+     * @return the Order that was passed in
+     */
     public Order update(Order order) {
         return orderCache.put(order.getOrderId(), order);
     }
