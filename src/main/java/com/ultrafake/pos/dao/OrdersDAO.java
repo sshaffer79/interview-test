@@ -32,11 +32,6 @@ public class OrdersDAO {
     }
 
     public Order update(Order order) {
-        if (orderCache.containsKey(order.getOrderId())) {
-            order = orderCache.put(order.getOrderId(), order);
-        } else {
-            //FIXME throw exception
-        }
-        return order;
+        return orderCache.put(order.getOrderId(), order);
     }
 }
