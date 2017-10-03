@@ -20,10 +20,15 @@ public class OrderController {
     private Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    DecimalFormat decimalFormat;
+    private DecimalFormat decimalFormat;
+
+    public OrderController(OrderService orderService, DecimalFormat decimalFormat) {
+        this.orderService = orderService;
+        this.decimalFormat = decimalFormat;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
