@@ -3,6 +3,7 @@ package com.ultrafake.pos.model;
 import java.math.BigDecimal;
 
 public class OrderLineItem {
+    private int itemId;
     private String name;
     private int numberOfItems;
     private BigDecimal totalPrice;
@@ -10,10 +11,19 @@ public class OrderLineItem {
     public OrderLineItem() {
     }
 
-    public OrderLineItem(String name, int numberOfItems, BigDecimal totalPrice) {
+    public OrderLineItem(int itemId, String name, int numberOfItems, BigDecimal totalPrice) {
+        this.itemId = itemId;
         this.name = name;
         this.numberOfItems = numberOfItems;
         this.totalPrice = totalPrice;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public String getName() {
@@ -36,10 +46,6 @@ public class OrderLineItem {
         return totalPrice;
     }
 
-    public String getTotalPriceDisplay() {
-        return totalPrice.toPlainString();
-    }
-
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
@@ -47,7 +53,8 @@ public class OrderLineItem {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("OrderLineItem{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("itemId=").append(itemId);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", numberOfItems=").append(numberOfItems);
         sb.append(", totalPrice=").append(totalPrice);
         sb.append('}');

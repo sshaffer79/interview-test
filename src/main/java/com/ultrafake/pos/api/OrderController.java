@@ -31,16 +31,16 @@ public class OrderController {
         return createFrom(orderService.getOrder(orderId));
     }
 
-    @RequestMapping(value = "/item/{itemName}", method = {RequestMethod.POST, RequestMethod.PUT})
+    @RequestMapping(value = "/item/{itemId}", method = {RequestMethod.POST, RequestMethod.PUT})
     @ResponseBody
-    public OrderDTO addItemToOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable String itemName) {
-        return createFrom(orderService.addOrUpdateLineItem(orderId, itemName));
+    public OrderDTO addItemToOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable int itemId) {
+        return createFrom(orderService.addOrUpdateLineItem(orderId, itemId));
     }
 
-    @RequestMapping(value = "/item/{itemName}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/item/{itemId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public OrderDTO removeItemFromOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable String itemName) {
-        return createFrom(orderService.removeLineItem(orderId, itemName));
+    public OrderDTO removeItemFromOrder(@CookieValue("JSESSIONID") String orderId, @PathVariable int itemId) {
+        return createFrom(orderService.removeLineItem(orderId, itemId));
     }
 
     @RequestMapping(value = "/clear", method = RequestMethod.DELETE)
@@ -52,7 +52,8 @@ public class OrderController {
     protected OrderDTO createFrom(Order order) {
         List<ItemDTO> items = new ArrayList<>();
         for (OrderLineItem lineItem : order.getLineItems()) {
-            items.add(new ItemDTO(lineItem.getName(),
+            items.add(new ItemDTO(lineItem.getItemId(),
+                    lineItem.getName(),
                     lineItem.getNumberOfItems(),
                     decimalFormat.format(lineItem.getTotalPrice())));
         }

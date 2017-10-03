@@ -1,22 +1,22 @@
-Item Name, Price
-Supreme Pizza, 16.99
-BBQ Chicken Pizza, 14.99
-Veggie Pizza, 12.99
-Meat Lover’s Pizza, 17.99
-Hawaiian Pizza, 14.99
-Supreme Calzone, 8.99
-BBQ Chicken Calzone, 7.99
-Veggie Calzone, 6.99
-Meat Lover’s Calzone, 8.99
-Hawaiian Calzone, 7.99
-Side Salad, 3.99
-Ceasar Salad, 4.99
-Cobb Salad, 4.99
-Chef Salad, 5.99
-Grilled Cheese, 3.99
-Coke, 1.00
-Diet Coke, 1.00
-Sprite, 1.00
-Dr. Pepper, 1.00
-Root Beer, 1.00
+Item Id, Item Name, Price
+1, Supreme Pizza, 16.99
+2, BBQ Chicken Pizza, 14.99
+3, Veggie Pizza, 12.99
+4, Meat Lover’s Pizza, 17.99
+5, Hawaiian Pizza, 14.99
+6, Supreme Calzone, 8.99
+7, BBQ Chicken Calzone, 7.99
+8, Veggie Calzone, 6.99
+9, Meat Lover’s Calzone, 8.99
+10, Hawaiian Calzone, 7.99
+11, Side Salad, 3.99
+12, Ceasar Salad, 4.99
+13, Cobb Salad, 4.99
+14, Chef Salad, 5.99
+15, Grilled Cheese, 3.99
+16, Coke, 1.00
+17, Diet Coke, 1.00
+18, Sprite, 1.00
+19, Dr. Pepper, 1.00
+20, Root Beer, 1.00
 

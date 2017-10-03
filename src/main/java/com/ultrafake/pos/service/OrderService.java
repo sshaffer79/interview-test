@@ -29,17 +29,17 @@ public class OrderService {
         return ordersDAO.getOrder(orderId);
     }
 
-    public Order addOrUpdateLineItem(String orderId, String itemName) {
+    public Order addOrUpdateLineItem(String orderId, int itemId) {
         Order order = ordersDAO.getOrder(orderId);
-        Item item = items.itemFor(itemName);
+        Item item = items.itemFor(itemId);
 
         OrderLineItem lineItem = order.getLineItems()
                 .stream()
-                .filter(i -> i.getName().equals(itemName))
+                .filter(i -> i.getItemId() == itemId)
                 .findFirst()
                 .orElse(null);
         if (lineItem == null) {
-            lineItem = new OrderLineItem(itemName, 1, item.getPrice());
+            lineItem = new OrderLineItem(itemId, item.getName(), 1, item.getPrice());
             order.getLineItems().add(lineItem);
         } else {
             lineItem.setNumberOfItems(lineItem.getNumberOfItems() + 1);
@@ -53,10 +53,10 @@ public class OrderService {
         return order;
     }
 
-    public Order removeLineItem(String orderId, String itemName) {
+    public Order removeLineItem(String orderId, int itemId) {
         Order order = ordersDAO.getOrder(orderId);
 
-        order.getLineItems().removeIf(i -> i.getName().equals(itemName));
+        order.getLineItems().removeIf(i -> i.getItemId() == itemId);
 
         calculateTaxAndTotals(order);
 

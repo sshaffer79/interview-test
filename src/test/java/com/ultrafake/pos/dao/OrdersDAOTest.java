@@ -31,7 +31,7 @@ public class OrdersDAOTest {
     public void testGetOnPopulatedMap() {
         Map<String, Order> populatedOrderedList = new HashMap<>();
         String orderId = "test1";
-        OrderLineItem item = new OrderLineItem("Test Item", 1, new BigDecimal(10.00));
+        OrderLineItem item = new OrderLineItem(1, "Test Item", 1, new BigDecimal(10.00));
         Order order = new Order(orderId, Arrays.asList(item));
         populatedOrderedList.put(orderId, order);
 
@@ -47,7 +47,7 @@ public class OrdersDAOTest {
     public void testGetOnPopulatedMapWithDifferentId() {
         Map<String, Order> populatedOrderedList = new HashMap<>();
         String orderId = "test1";
-        OrderLineItem item = new OrderLineItem("Test Item", 1, new BigDecimal(10.00));
+        OrderLineItem item = new OrderLineItem(1, "Test Item", 1, new BigDecimal(10.00));
         Order order = new Order(orderId, Arrays.asList(item));
         populatedOrderedList.put(orderId, order);
 
@@ -73,7 +73,7 @@ public class OrdersDAOTest {
     public void testClearWithPopulatedMap() {
         Map<String, Order> populatedOrderedList = new HashMap<>();
         String orderId = "test1";
-        OrderLineItem item = new OrderLineItem("Test Item", 1, new BigDecimal(10.00));
+        OrderLineItem item = new OrderLineItem(1,"Test Item", 1, new BigDecimal(10.00));
         Order order = new Order(orderId, Arrays.asList(item));
         populatedOrderedList.put(orderId, order);
 
@@ -87,7 +87,7 @@ public class OrdersDAOTest {
     public void testClearWithPopulatedMapAndWrongId() {
         Map<String, Order> populatedOrderedList = new HashMap<>();
         String orderId = "test1";
-        OrderLineItem item = new OrderLineItem("Test Item", 1, new BigDecimal(10.00));
+        OrderLineItem item = new OrderLineItem(1,"Test Item", 1, new BigDecimal(10.00));
         Order order = new Order(orderId, Arrays.asList(item));
         populatedOrderedList.put(orderId, order);
 

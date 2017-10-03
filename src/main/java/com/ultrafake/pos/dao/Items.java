@@ -1,22 +1,19 @@
 package com.ultrafake.pos.dao;
 
-
 import com.ultrafake.pos.model.Item;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.nio.file.Files;
 import java.util.*;
 
 @Component
 public class Items {
-
     private final static List<Item> itemList;
 
     static {
         LinkedList<Item> items = new LinkedList<>();
+        String fields[] = {};
 
         try(InputStream itemsStream =
                 Items.class.getClassLoader().getResourceAsStream("items.csv")) {
@@ -29,23 +26,26 @@ public class Items {
 
                 lineNum++;
 
-                String fields[] = scanner.nextLine().split(",");
+                fields = scanner.nextLine().split(",");
 
                 if(fields.length < 2) {
                     continue;
                 }
 
-                String name = fields[0].trim();
-
                 // Skip the first line in an intentionally brittle way so format changes
                 // will cause this to get re-examined
-                if(lineNum == 1 && "Item Name".equals(name) && "Price".equals(fields[1].trim())) {
+                if(lineNum == 1 && "Item Id".equals(fields[0].trim())
+                        && "Item Name".equals(fields[1].trim()) && "Price".equals(fields[2].trim())) {
                     continue;
                 }
 
-                BigDecimal price = new BigDecimal(fields[1].trim());
+                int id = Integer.valueOf(fields[0].trim());
 
-                items.add(new Item(name, price));
+                String name = fields[1].trim();
+
+                BigDecimal price = new BigDecimal(fields[2].trim());
+
+                items.add(new Item(id, name, price));
             }
         } catch(Exception e) {
             throw new Error(e);
@@ -70,4 +70,13 @@ public class Items {
         throw new Error("Unknown item: " + name);
     }
 
+    public Item itemFor(int id) {
+        for(Item item : itemList) {
+            if(item.getId() == id) {
+                return item;
+            }
+        }
+
+        throw new Error("Unknown item id: " + id);
+    }
 }

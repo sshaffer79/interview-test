@@ -43,7 +43,7 @@ public class ItemsTest {
     }
 
     @Test
-    public void itemFor() throws Exception {
+    public void itemForByName() throws Exception {
         // The apostrophe ain't the one on the keyboard (it's ’ not ').
         Item item = items.itemFor("Meat Lover’s Pizza");
 
@@ -52,4 +52,12 @@ public class ItemsTest {
         assertTrue(item.getPrice().compareTo(BigDecimal.ZERO) > 0);
     }
 
+    @Test
+    public void itemForById() throws Exception {
+        Item item = items.itemFor(1);
+
+        assertNotNull(item);
+        assertNotNull(item.getPrice());
+        assertTrue(item.getPrice().compareTo(BigDecimal.ZERO) > 0);
+    }
 }
