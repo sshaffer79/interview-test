@@ -34,7 +34,7 @@
         <div class="order-content" layout="column">
             <div flex="grow">
               <table class="line-items">
-                <tr ng-repeat="orderItem in order.items" ng-click="itemSelect(orderItem)">
+                <tr ng-repeat="orderItem in order.items" ng-click="orderItemSelect(orderItem)">
                     <td class="qty">{{orderItem.quantity}}</td>
                     <td class="name">{{orderItem.name}}</td>
                     <td class="price">{{orderItem.cost}}</td>
